@@ -2,18 +2,15 @@ package CalculatorController;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.tools.internal.ws.wsdl.document.Output;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.math.*;
-import static java.lang.Short.valueOf;
 import static javafx.application.Platform.exit;
 
 public class Controller {
@@ -83,62 +80,91 @@ public class Controller {
 
 
     @FXML
-    public void handleButtonEvent(ActionEvent event){
+    public void handleButtonEvent(ActionEvent event) throws FileNotFoundException {
 
-        if(event.getSource().equals(zero)){
+        if (event.getSource().equals(zero)) {
             number = number + "0";
             handleText();
         }
-        if(event.getSource().equals(one)){
+        if (event.getSource().equals(one)) {
             number = number + "1";
             handleText();
         }
-        if(event.getSource().equals(two)){
+        if (event.getSource().equals(two)) {
             number = number + "2";
             handleText();
         }
-        if(event.getSource().equals(three)){
+        if (event.getSource().equals(three)) {
             number = number + "3";
             handleText();
 
         }
-        if(event.getSource().equals(four)){
+        if (event.getSource().equals(four)) {
             number = number + "4";
             handleText();
 
         }
-        if(event.getSource().equals(five)){
+        if (event.getSource().equals(five)) {
             number = number + "5";
             handleText();
 
         }
-        if(event.getSource().equals(six)){
+        if (event.getSource().equals(six)) {
             number = number + "6";
             handleText();
 
         }
-        if(event.getSource().equals(seven)){
+        if (event.getSource().equals(seven)) {
             number = number + "7";
             handleText();
 
         }
-        if(event.getSource().equals(eight)){
+        if (event.getSource().equals(eight)) {
             number = number + "8";
             handleText();
 
         }
-        if(event.getSource().equals(nine)){
+        if (event.getSource().equals(nine)) {
             number = number + "9";
             handleText();
 
         }
+        if (event.getSource().equals(decimal)) {
+            if (validateNumber() == true) {
+                number = number + ".";
+                handleText();
+            }
+            else{
+                number = number;
 
-    }
+                }
+            }
+
+        }
+
+
+
 
     public void handleText(){
         outputText.setText(number);
 
 
+    }
+
+    public boolean validateNumber() {
+        int index = outputText.getText().indexOf(".");
+        if(index != -1) {
+            // Contains a decimal point
+            if (outputText.getText().substring(index + 1).indexOf(".") == -1) {
+                return false;
+            } else {
+               return false;
+            }
+        }
+        else {
+            return true;
+
+        }
     }
 
 
@@ -168,50 +194,50 @@ public class Controller {
                 double initial_Number = Double.parseDouble(data);
                 double num = Double.parseDouble(number);
                 PrintWriter pw = new PrintWriter("output.text");
-                    if (operand == "") {
+                if (operand == "") {
 
-                        outputText.setText(Double.toString(Double.parseDouble(number)));
-                        number = Double.toString(initial_Number);
-                        pw.write(number);
-                        pw.close();
-
-
-                    }
-                    if (operand == "+") {
-                        outputText.setText(Double.toString(initial_Number + num));
-                        number = Double.toString(initial_Number + num);
-                        pw.write(Double.toString(initial_Number + num));
-                        pw.close();
-                        operand = "";
+                    outputText.setText(Double.toString(Double.parseDouble(number)));
+                    number = Double.toString(initial_Number);
+                    pw.write(number);
+                    pw.close();
 
 
-                    }
-                    if (operand.equalsIgnoreCase("-")) {
-                        outputText.setText(Double.toString(initial_Number - num));
-                        number = Double.toString(initial_Number - num);
-                        pw.write(Double.toString(initial_Number - num));
-                        pw.close();
-                        operand = "";
-
-                    }
-                    if (operand.equalsIgnoreCase("x")) {
-                        outputText.setText(Double.toString(initial_Number * num));
-                        number = Double.toString(initial_Number * num);
-                        pw.write(Double.toString(initial_Number * num));
-                        pw.close();
-                        operand = "";
-
-                    }
-                    if (operand.equalsIgnoreCase("/")) {
-
-                        outputText.setText(Double.toString(initial_Number / num));
-                        number = Double.toString(initial_Number / num);
-                        pw.write(Double.toString(initial_Number / num));
-                        pw.close();
-                        operand = "";
-
-                    }
                 }
+                if (operand == "+") {
+                    outputText.setText(Double.toString(initial_Number + num));
+                    number = Double.toString(initial_Number + num);
+                    pw.write(Double.toString(initial_Number + num));
+                    pw.close();
+                    operand = "";
+
+
+                }
+                if (operand.equalsIgnoreCase("-")) {
+                    outputText.setText(Double.toString(initial_Number - num));
+                    number = Double.toString(initial_Number - num);
+                    pw.write(Double.toString(initial_Number - num));
+                    pw.close();
+                    operand = "";
+
+                }
+                if (operand.equalsIgnoreCase("x")) {
+                    outputText.setText(Double.toString(initial_Number * num));
+                    number = Double.toString(initial_Number * num);
+                    pw.write(Double.toString(initial_Number * num));
+                    pw.close();
+                    operand = "";
+
+                }
+                if (operand.equalsIgnoreCase("/")) {
+
+                    outputText.setText(Double.toString(initial_Number / num));
+                    number = Double.toString(initial_Number / num);
+                    pw.write(Double.toString(initial_Number / num));
+                    pw.close();
+                    operand = "";
+
+                }
+            }
             else if(operand == "" && number.equals("")){
                 outputText.setText("0");
             }
@@ -222,10 +248,10 @@ public class Controller {
                 pw.write("");
             }
 
-            }
-
-
         }
+
+
+    }
 
 
 
@@ -267,12 +293,8 @@ public class Controller {
         }
         else{
             operand = "";
-
         }
-
-
     }
-
 
 
     @FXML
@@ -300,14 +322,26 @@ public class Controller {
             }
 
 
-            }
         }
 
 
+    }
+
+    @FXML
+    public void handlePercentage(ActionEvent event) throws IOException{
+
+        if(event.getSource().equals(percentage)){
+            if(number != ""){
+            double v = Double.parseDouble(outputText.getText()) / 100;
+            outputText.setText(Double.toString(v));
+            number = Double.toString(v);
+
+            PrintWriter pr = new PrintWriter("output.text");
+            pr.write(number);}
+            number = number;
 
 
         }
+    }
 
-
-
-
+}
