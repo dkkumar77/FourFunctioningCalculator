@@ -7,5 +7,5 @@ Basic four function calculator using JAVAFX
 
 
 
-![CALCULATOR](src/Images/Interface.png?raw=true" width="272" height="411" "CALCULATOR")
+![CALCULATOR](src/Images/Interface.png?raw=true width="272" height="411" "CALCULATOR")
 
