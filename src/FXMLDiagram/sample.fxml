@@ -1,8 +1,124 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="CalculatorController.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CalculatorController.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane maxHeight="411.0" maxWidth="272.0" minHeight="411.0" minWidth="272.0" prefHeight="411.0" prefWidth="272.0" style="-fx-background-color: black;">
+         <children>
+            <JFXButton fx:id="clear" layoutX="10.0" layoutY="124.0" onAction="#handleClear" ripplerFill="#c9c3bc" text="AC" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="four" layoutX="17.0" layoutY="230.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="4" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="one" layoutX="17.0" layoutY="283.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="1" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="negativePositive" layoutX="80.0" layoutY="124.0" ripplerFill="#c9c3bc" text="+/-" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="three" layoutX="152.0" layoutY="283.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="3" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="zero" layoutX="17.0" layoutY="331.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="six" layoutX="152.0" layoutY="230.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="6" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="nine" layoutX="152.0" layoutY="182.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="9" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="division" layoutX="208.0" layoutY="124.0" maxHeight="48.0" maxWidth="41.0" minHeight="48.0" minWidth="41.0" onAction="#handleOperands" prefHeight="48.0" prefWidth="41.0" ripplerFill="#c67416" text="/" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="percentage" layoutX="148.0" layoutY="124.0" ripplerFill="#c9c3bc" text="\%" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="two" layoutX="88.0" layoutY="283.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="2" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="five" layoutX="88.0" layoutY="230.0" onAction="#handleButtonEvent" prefHeight="48.0" prefWidth="46.0" ripplerFill="#c9c3bc" text="5" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="eight" layoutX="88.0" layoutY="182.0" onAction="#handleButtonEvent" prefHeight="15.0" prefWidth="46.0" ripplerFill="#c9c3bc" text="8" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="decimal" layoutX="155.0" layoutY="331.0" ripplerFill="#c9c3bc" text="." textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="multiply" layoutX="205.0" layoutY="182.0" minHeight="48.0" onAction="#handleOperands" prefHeight="48.0" prefWidth="41.0" ripplerFill="#c9c3bc" text="x" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="minus" layoutX="207.0" layoutY="230.0" minHeight="48.0" onAction="#handleOperands" prefHeight="48.0" prefWidth="41.0" ripplerFill="#c9c3bc" text="-" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="plus" layoutX="204.0" layoutY="283.0" minHeight="48.0" onAction="#handleOperands" prefHeight="48.0" prefWidth="41.0" ripplerFill="#c9c3bc" text="+" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="equal" layoutX="203.0" layoutY="331.0" minHeight="48.0" onAction="#handleOperands" prefHeight="48.0" prefWidth="41.0" ripplerFill="#c9c3bc" text="=" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="seven" layoutX="17.0" layoutY="182.0" onAction="#handleButtonEvent" ripplerFill="#c9c3bc" text="7" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="outputText" alignment="CENTER_RIGHT" focusColor="WHITE" layoutX="25.0" layoutY="56.0" text="0" unFocusColor="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="22.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+   </children>
 </GridPane>

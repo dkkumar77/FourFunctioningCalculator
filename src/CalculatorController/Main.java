@@ -11,9 +11,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../FXMLDiagram/sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 272, 411));
         primaryStage.show();
+        primaryStage.setMaxHeight(411);
+        primaryStage.setMinWidth(272);
+        primaryStage.setMaxWidth(272);
+        primaryStage.setMinHeight(411);
+        primaryStage.setTitle("Calculator");
+
+
+
+
     }
 
 
