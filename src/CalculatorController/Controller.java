@@ -2,6 +2,7 @@ package CalculatorController;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.tools.internal.ws.wsdl.document.Output;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -11,8 +12,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import java.math.*;
 import static java.lang.Short.valueOf;
+import static javafx.application.Platform.exit;
 
 public class Controller {
 
@@ -82,6 +84,7 @@ public class Controller {
 
     @FXML
     public void handleButtonEvent(ActionEvent event){
+
         if(event.getSource().equals(zero)){
             number = number + "0";
             handleText();
@@ -142,104 +145,169 @@ public class Controller {
     @FXML
     public void handleClear(ActionEvent event) throws IOException{
         if(event.getSource().equals(clear)){
+            outputText.setText("0");
             number = "";
-            outputText.equals("");
-
             if(event.getSource().equals(clear)){
                 number = "";
                 PrintWriter pw = new PrintWriter("output.text");
                 pw.write("");
 
             }
-
-
         }
     }
+
+
 
     @FXML
-
     public void handleEqual(ActionEvent event) throws IOException {
 
-        /*
-        Need to Fix String to Int;
+        if (event.getSource().equals(equal)) {
 
-         */
+            if (!number.equals("")) {
+                String data = new String(Files.readAllBytes(Paths.get("output.text")));
+                double initial_Number = Double.parseDouble(data);
+                double num = Double.parseDouble(number);
+                PrintWriter pw = new PrintWriter("output.text");
+                    if (operand == "") {
 
-        if(event.getSource().equals(equal)){
-            String data = new String(Files.readAllBytes(Paths.get("output.text")));
-            int initial_Number = Integer.parseInt(data);
-            int num = Integer.parseInt(number);
+                        outputText.setText(Double.toString(Double.parseDouble(number)));
+                        number = Double.toString(initial_Number);
+                        pw.write(number);
+                        pw.close();
 
-            PrintWriter pw = new PrintWriter("output.text");
 
-            if(operand == ""){
-                outputText.setText(number);
-                number = Integer.toString(initial_Number + num);
-                pw.write(number);
-                pw.close();
+                    }
+                    if (operand == "+") {
+                        outputText.setText(Double.toString(initial_Number + num));
+                        number = Double.toString(initial_Number + num);
+                        pw.write(Double.toString(initial_Number + num));
+                        pw.close();
+                        operand = "";
 
+
+                    }
+                    if (operand.equalsIgnoreCase("-")) {
+                        outputText.setText(Double.toString(initial_Number - num));
+                        number = Double.toString(initial_Number - num);
+                        pw.write(Double.toString(initial_Number - num));
+                        pw.close();
+                        operand = "";
+
+                    }
+                    if (operand.equalsIgnoreCase("x")) {
+                        outputText.setText(Double.toString(initial_Number * num));
+                        number = Double.toString(initial_Number * num);
+                        pw.write(Double.toString(initial_Number * num));
+                        pw.close();
+                        operand = "";
+
+                    }
+                    if (operand.equalsIgnoreCase("/")) {
+
+                        outputText.setText(Double.toString(initial_Number / num));
+                        number = Double.toString(initial_Number / num);
+                        pw.write(Double.toString(initial_Number / num));
+                        pw.close();
+                        operand = "";
+
+                    }
+                }
+            else if(operand == "" && number.equals("")){
+                outputText.setText("0");
+            }
+            else{
+                outputText.setText("Error, try again");
+                number = "";
+                PrintWriter pw = new PrintWriter("output.text");
+                pw.write("");
+            }
 
             }
-            if(operand == "+"){
-                outputText.setText(Integer.toString(initial_Number + num));
-                number = Integer.toString(initial_Number + num);
-                pw.write(Integer.toString(initial_Number + num));
-                pw.close();
 
 
-            }
-            if(operand.equalsIgnoreCase("-")){
-                outputText.setText(Integer.toString(initial_Number - num));
-                number = Integer.toString(initial_Number - num);
-                pw.write(Integer.toString(initial_Number - num));
-                pw.close();
-
-            }
         }
 
 
-    }
 
     @FXML
     public void handleOperands(ActionEvent event) throws FileNotFoundException {
 
-        PrintWriter pr = new PrintWriter("output.text");
-        pr.write(number);
-        pr.close();
-
-        if (event.getSource().equals(plus)) {
-            operand = "+";
-            outputText.setText("");
-            number = "";
-        }
-        if (event.getSource().equals(minus)) {
-            operand = "-";
-            outputText.setText("");
-            number = "";
-
-
-        }
-        if (event.getSource().equals(multiply)) {
-            operand = "x";
-            outputText.setText("");
-            number = "";
-
-
-        }
-
-        if (event.getSource().equals(division)) {
-            {
-                operand = "/";
+        if(number != "") {
+            PrintWriter pr = new PrintWriter("output.text");
+            pr.write(number);
+            pr.close();
+            if (event.getSource().equals(plus)) {
+                operand = "+";
+                outputText.setText("");
+                number = "";
+            }
+            if (event.getSource().equals(minus)) {
+                operand = "-";
                 outputText.setText("");
                 number = "";
 
 
+            }
+            if (event.getSource().equals(multiply)) {
+                operand = "x";
+                outputText.setText("");
+                number = "";
+            }
+
+            if (event.getSource().equals(division)) {
+                {
+                    operand = "/";
+                    outputText.setText("");
+                    number = "";
+
+                }
+
 
             }
+        }
+        else{
+            operand = "";
+
+        }
+
+
+    }
+
+
+
+    @FXML
+    public void handlePositiveNegativeConversion(ActionEvent event) throws FileNotFoundException {
+
+        if (event.getSource().equals(negativePositive)) {
+            PrintWriter pr = new PrintWriter("output.text");
+            if(Double.parseDouble(number) != 0) {
+                if (Double.parseDouble(number) < 0) {
+                    double value = Math.abs(Double.parseDouble(number));
+                    number = Double.toString(value);
+                    outputText.setText(number);
+                    pr.write(number);
+                } else{
+                    double value = -(Double.parseDouble(number));
+                    number = Double.toString(value);
+                    outputText.setText(number);
+                    pr.write(number);
+                }
+
+            }
+            else{
+                return;
+
+            }
+
+
+            }
+        }
+
+
 
 
         }
 
 
-    }}
+
 
