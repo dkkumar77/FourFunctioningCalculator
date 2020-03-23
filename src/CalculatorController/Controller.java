@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static java.lang.Short.valueOf;
 
 public class Controller {
 
@@ -73,6 +77,8 @@ public class Controller {
     private JFXTextField outputText;
 
     private String number = "";
+    private String operand = "";
+
 
     @FXML
     public void handleButtonEvent(ActionEvent event){
@@ -137,6 +143,8 @@ public class Controller {
     public void handleClear(ActionEvent event) throws IOException{
         if(event.getSource().equals(clear)){
             number = "";
+            outputText.equals("");
+
             if(event.getSource().equals(clear)){
                 number = "";
                 PrintWriter pw = new PrintWriter("output.text");
@@ -148,44 +156,83 @@ public class Controller {
         }
     }
 
+    @FXML
+
+    public void handleEqual(ActionEvent event) throws IOException {
+
+        /*
+        Need to Fix String to Int;
+
+         */
+
+        if(event.getSource().equals(equal)){
+            String data = new String(Files.readAllBytes(Paths.get("output.text")));
+            int initial_Number = Integer.parseInt(data);
+            int num = Integer.parseInt(number);
+
+            PrintWriter pw = new PrintWriter("output.text");
+
+            if(operand == ""){
+                outputText.setText(number);
+                number = Integer.toString(initial_Number + num);
+                pw.write(number);
+                pw.close();
+
+
+            }
+            if(operand == "+"){
+                outputText.setText(Integer.toString(initial_Number + num));
+                number = Integer.toString(initial_Number + num);
+                pw.write(Integer.toString(initial_Number + num));
+                pw.close();
+
+
+            }
+            if(operand.equalsIgnoreCase("-")){
+                outputText.setText(Integer.toString(initial_Number - num));
+                number = Integer.toString(initial_Number - num);
+                pw.write(Integer.toString(initial_Number - num));
+                pw.close();
+
+            }
+        }
+
+
+    }
 
     @FXML
     public void handleOperands(ActionEvent event) throws FileNotFoundException {
-        if (event.getSource().equals(plus)) {
-                PrintWriter pr = new PrintWriter("output.text");
-                pr.write(number);
-                outputText.setText("");
-                pr.write("\n+");
-                pr.close();
 
+        PrintWriter pr = new PrintWriter("output.text");
+        pr.write(number);
+        pr.close();
+
+        if (event.getSource().equals(plus)) {
+            operand = "+";
+            outputText.setText("");
+            number = "";
         }
         if (event.getSource().equals(minus)) {
-
-            PrintWriter pr = new PrintWriter("output.text");
-            pr.write(number);
+            operand = "-";
             outputText.setText("");
-            pr.write("\n-");
-            pr.close();
+            number = "";
 
 
         }
         if (event.getSource().equals(multiply)) {
-
-            PrintWriter pr = new PrintWriter("output.text");
-            pr.write(number);
+            operand = "x";
             outputText.setText("");
-            pr.write("\nx");
-            pr.close();
+            number = "";
+
 
         }
 
         if (event.getSource().equals(division)) {
             {
-                PrintWriter pr = new PrintWriter("output.text");
-                pr.write(number);
+                operand = "/";
                 outputText.setText("");
-                pr.write("\n/");
-                pr.close();
+                number = "";
+
 
 
             }
