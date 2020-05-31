@@ -1,7 +1,9 @@
 # Four Function Calculator
 
-Unfortunately since classes are out in spite of COVID-19;
-I've took the extra free time to work on personal projects
+
+Insanely bored, wanted to test myself to see how long it would take to make this. Very simple idea.
+
+
 
 Description:
 Simple four-function calculator that one can add/subtract/divide/multiply;
