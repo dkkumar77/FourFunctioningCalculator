@@ -113,11 +113,16 @@
                   <Font name="Telugu MN" size="25.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="outputText" alignment="CENTER_RIGHT" focusColor="WHITE" layoutX="25.0" layoutY="56.0" text="0" unFocusColor="WHITE">
+            <JFXTextField fx:id="outputText" alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" layoutX="25.0" layoutY="56.0" text="0" styleClass="jfx-text-area" stylesheets="@cssEdit.css" unFocusColor="#282424">
                <font>
                   <Font name="Telugu MN" size="22.0" />
                </font>
             </JFXTextField>
+            <JFXButton fx:id="switchScene" layoutX="13.0" layoutY="14.0" onAction="#handleSwitch" text="Binary" textFill="WHITE">
+               <font>
+                  <Font name="Telugu MN" size="13.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

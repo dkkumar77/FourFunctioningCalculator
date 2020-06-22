@@ -75,6 +75,11 @@ public class Controller {
     @FXML
     private JFXTextField outputText;
 
+
+    @FXML
+    private JFXButton switchScene;
+
+
     private String number = "";
     private String operand = "";
 
@@ -133,19 +138,16 @@ public class Controller {
             if (validateNumber() == true) {
                 number = number + ".";
                 handleText();
-            }
-            else{
+            } else {
                 number = number;
 
-                }
             }
-
         }
 
+    }
 
 
-
-    public void handleText(){
+    public void handleText() {
         outputText.setText(number);
 
 
@@ -153,15 +155,14 @@ public class Controller {
 
     public boolean validateNumber() {
         int index = outputText.getText().indexOf(".");
-        if(index != -1) {
+        if (index != -1) {
             // Contains a decimal point
             if (outputText.getText().substring(index + 1).indexOf(".") == -1) {
                 return false;
             } else {
-               return false;
+                return false;
             }
-        }
-        else {
+        } else {
             return true;
 
         }
@@ -169,11 +170,11 @@ public class Controller {
 
 
     @FXML
-    public void handleClear(ActionEvent event) throws IOException{
-        if(event.getSource().equals(clear)){
+    public void handleClear(ActionEvent event) throws IOException {
+        if (event.getSource().equals(clear)) {
             outputText.setText("0");
             number = "";
-            if(event.getSource().equals(clear)){
+            if (event.getSource().equals(clear)) {
                 number = "";
                 PrintWriter pw = new PrintWriter("output.text");
                 pw.write("");
@@ -181,7 +182,6 @@ public class Controller {
             }
         }
     }
-
 
 
     @FXML
@@ -237,11 +237,9 @@ public class Controller {
                     operand = "";
 
                 }
-            }
-            else if(operand == "" && number.equals("")){
+            } else if (operand == "" && number.equals("")) {
                 outputText.setText("0");
-            }
-            else{
+            } else {
                 outputText.setText("Error, try again");
                 number = "";
                 PrintWriter pw = new PrintWriter("output.text");
@@ -254,11 +252,10 @@ public class Controller {
     }
 
 
-
     @FXML
     public void handleOperands(ActionEvent event) throws FileNotFoundException {
 
-        if(number != "") {
+        if (number != "") {
             PrintWriter pr = new PrintWriter("output.text");
             pr.write(number);
             pr.close();
@@ -290,10 +287,16 @@ public class Controller {
 
 
             }
-        }
-        else{
+        } else {
             operand = "";
         }
+    }
+
+
+    @FXML
+    public void handleSupressorWarning(Exception e) throws Exception{
+
+
     }
 
 
@@ -344,4 +347,15 @@ public class Controller {
         }
     }
 
+
+    public void handleSwitch(ActionEvent event){
+
+        if(event.getSource().equals(switchScene)){
+
+
+
+        }
+
+
+    }
 }
